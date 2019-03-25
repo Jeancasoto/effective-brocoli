@@ -6,6 +6,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import ListScreen from '../screens/Lista_Deseos';
 import Islas from '../screens/islas';
 import Playas from '../screens/playas';
 import Buceo from '../screens/Buceo';
@@ -94,11 +95,11 @@ LinksStack.navigationOptions = {
 };
 
 const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
+  Settings: ListScreen,
 });
 
 SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+  tabBarLabel: 'Lista Deseos',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
