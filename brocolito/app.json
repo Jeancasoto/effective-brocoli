@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Potato",
-    "slug": "potato",
+    "name": "HondurasTravel",
+    "slug": "hondurastravel",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": [
@@ -24,6 +24,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "La app que te muestra nuestra hermosa Honduras",
+    "githubUrl": "https://github.com/Jeancasoto/effective-brocoli"
   }
 }

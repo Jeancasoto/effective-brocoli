@@ -29,6 +29,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import sideD from '../screens/sideScreen.js'
 import {
   Image,
+  ImageBackground,
   Platform,
   ScrollView,
   StyleSheet,
@@ -156,18 +157,343 @@ export default class HomeScreen extends React.Component {
                 }}
               /> */}
 
-            
+<TouchableOpacity >
+<ImageBackground 
+  source={{ uri: 'https://honduras.travel/images/promos/feriado-morazanico-2018/cover-roatan-min.jpg' }}
+  style={{flexGrow: 1, width: 'auto', height: 350, justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}
+>
+  <Text 
+    style={{
+      fontSize: 22,
+      fontWeight: 'bold',
+      color: 'white',
+      position: 'absolute', // child
+      //justifyContent: 'center', 
+      //alignItems: 'center'
+      bottom: 40, // position where you want
+      left: 0
+    }}
+    >
+    Honduras, Amor a primera vista
+  </Text>
+  <Text 
+    style={{
+      fontSize: 10,
+      
+      color: 'white',
+      position: 'absolute', // child
+      //justifyContent: 'center', 
+      //alignItems: 'center'
+      bottom: 20, // position where you want
+      left: 0
+    }}
+    >
+    ROATÁN, UNA DE LAS 10 MEJORES PLAYAS DEL MUNDO
 
-              <View style={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>      
+  </Text>
+  
+  <Text 
+    style={{
+      fontSize: 8,
+      
+      color: 'white',
+      position: 'absolute', // child
+      //justifyContent: 'center', 
+      //alignItems: 'center'
+      bottom: 10, // position where you want
+      left: 0
+    }}
+    >
+   
+    Travelers'Choice de TripAdvisor 2016
+  </Text>
+
+  
+</ImageBackground>
+</TouchableOpacity>
+ 
+<TouchableOpacity >
+<ImageBackground 
+  source={{ uri: 'https://honduras.travel/images/new/Wolfgang-Polzer-Pulhapanzak-min.jpg' }}
+  style={{flexGrow: 1, width: 'auto', height: 350, justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}
+>
+  <Text 
+    style={{
+      fontSize: 26,
+      fontWeight: 'bold',
+      color: 'white',
+      position: 'absolute', // child
+      //justifyContent: 'center', 
+      //alignItems: 'center'
+      bottom: 45, // position where you want
+      left: 0
+    }}
+    >
+    Pulhapanzak
+  </Text>
+
+  <Text 
+    style={{
+      fontSize: 18,
+      
+      color: 'white',
+      position: 'absolute', // child
+      //justifyContent: 'center', 
+      //alignItems: 'center'
+      bottom: 28, // position where you want
+      left: 0
+    }}
+    >
+    La catarata que ha inspirado a muchos
+    
+  </Text>
+  <Text 
+    style={{
+      fontSize: 8,
+      
+      color: 'white',
+      position: 'absolute', // child
+      //justifyContent: 'center', 
+      //alignItems: 'center'
+      bottom: 20, // position where you want
+      left: 0
+    }}
+    >
+    -Canopy, comida, y aventura
+    
+  </Text>
+  <Text 
+    style={{
+      fontSize: 8,
+      
+      color: 'white',
+      position: 'absolute', // child
+      //justifyContent: 'center', 
+      //alignItems: 'center'
+      bottom: 10, // position where you want
+      left: 0
+    }}
+    >
+    Lago de Yojoa
+    
+  </Text>
+  
+</ImageBackground>
+</TouchableOpacity>
+
+<TouchableOpacity >
+<ImageBackground 
+  source={{ uri: 'https://honduras.travel/images/promos/feriado-morazanico-2018/copan-cover.jpg' }}
+  style={{flexGrow: 1, width: 'auto', height: 350, justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}
+>
+  <Text 
+    style={{
+      fontSize: 26,
+      fontWeight: 'bold',
+      color: 'white',
+      position: 'absolute', // child
+      //justifyContent: 'center', 
+      //alignItems: 'center'
+      bottom: 45, // position where you want
+      left: 0
+    }}
+    >
+    Historia a tus pies
+  </Text>
+  <Text 
+    style={{
+      fontSize: 14,
+      
+      color: 'white',
+      position: 'absolute', // child
+      //justifyContent: 'center', 
+      //alignItems: 'center'
+      bottom: 28, // position where you want
+      left: 0
+    }}
+    >
+    COPÁN, PATRIMONIO DE LA HUMANIDAD
+  </Text>
+
+  <Text 
+    style={{
+      fontSize: 10,
+   
+      color: 'white',
+      position: 'absolute', // child
+      //justifyContent: 'center', 
+      //alignItems: 'center'
+      bottom: 14, // position where you want
+      left: 0
+    }}
+    >
+    - World Heritage List de UNESCO
+  </Text>
+
+  <Text 
+    style={{
+      fontSize: 8,
+   
+      color: 'white',
+      position: 'absolute', // child
+      //justifyContent: 'center', 
+      //alignItems: 'center'
+      bottom: 5, // position where you want
+      left: 0
+    }}
+    >
+    Ruinas de Copán, Copán
+  </Text>
+
+</ImageBackground>
+</TouchableOpacity>
+
+
+<TouchableOpacity >
+<ImageBackground 
+  source={{ uri: 'https://honduras.travel/images/new/Martin-Strmiska-Utila-small-min.jpg' }}
+  style={{flexGrow: 1, width: 'auto', height: 350, justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}
+>
+  <Text 
+    style={{
+      fontSize: 22,
+      fontWeight: 'bold',
+      color: 'white',
+      position: 'absolute', // child
+      //justifyContent: 'center', 
+      //alignItems: 'center'
+       bottom: 44, // position where you want
+       left: 0
+    }}
+    >
+    Descubre nuevos mundos
+  </Text>
+
+  <Text 
+    style={{
+      fontSize: 12,
+      fontWeight: 'bold',
+      color: 'white',
+      position: 'absolute', // child
+      //justifyContent: 'center', 
+      //alignItems: 'center'
+       bottom: 24, // position where you want
+       left: 0
+    }}
+    >
+    Los mejores lugares para bucear se encuentran en Islas de la Bahía
+  </Text>
+
+  <Text 
+    style={{
+      fontSize: 10,
+      fontWeight: 'bold',
+      color: 'white',
+      position: 'absolute', // child
+      //justifyContent: 'center', 
+      //alignItems: 'center'
+       bottom: 14, // position where you want
+       left: 0
+    }}
+    >
+    - World's Best Islands for Snorkeling - Islands.com
+  </Text>
+
+  <Text 
+    style={{
+      fontSize: 8,
+      color: 'white',
+      position: 'absolute', // child
+      //justifyContent: 'center', 
+      //alignItems: 'center'
+       bottom: 4, // position where you want
+       left: 0
+    }}
+    >
+   Utila, Islas de la Bahía
+  </Text>
+
+  
+</ImageBackground>
+</TouchableOpacity>
+
+
+<TouchableOpacity >
+<ImageBackground 
+  source={{ uri: 'https://honduras.travel/images/new/Wolfgang-Polzer-Avistamiento-de-Aves-small-min.jpg' }}
+  style={{flexGrow: 1, width: 'auto', height: 350, justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}
+>
+  <Text 
+    style={{
+      fontSize: 26,
+      fontWeight: 'bold',
+      color: 'white',
+      position: 'absolute', // child
+      //justifyContent: 'center', 
+      //alignItems: 'center'
+       bottom: 44, // position where you want
+       left: 0
+    }}
+    >
+    Naturaleza y tranquilidad
+  </Text>
+
+  <Text 
+    style={{
+      fontSize: 11,
+      color: 'white',
+      position: 'absolute', // child
+      //justifyContent: 'center', 
+      //alignItems: 'center'
+       bottom: 26, // position where you want
+       left: 0
+    }}
+    >
+    Vive un momento de paz durante el avistamiento de aves en su entorno natural
+  </Text>
+
+  <Text 
+    style={{
+      fontSize: 8,
+      color: 'white',
+      position: 'absolute', // child
+      //justifyContent: 'center', 
+      //alignItems: 'center'
+       bottom: 18, // position where you want
+       left: 0
+    }}
+    >
+- Escucha, observa y conoce las aves de PANACAM
+  </Text>
+
+  <Text 
+    style={{
+      fontSize: 8,
+      color: 'white',
+      position: 'absolute', // child
+      //justifyContent: 'center', 
+      //alignItems: 'center'
+       bottom: 8, // position where you want
+       left: 0
+    }}
+    >
+  PANACAM, Lago de Yojoa
+  </Text>
+
+
+  
+</ImageBackground>
+</TouchableOpacity>
+              {/* <View style={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>      
                 <Image source={imagen}/>
                 <Image source={imagen2}/>
-              </View>
+              </View> */}
 
-              
-              
-
-
-
+              {/* https://honduras.travel//images/promos/feriado-morazanico-2018/cover-roatan-min.jpg 
+              https://honduras.travel/images/new/Wolfgang-Polzer-Pulhapanzak-min.jpg 
+              https://honduras.travel/images/promos/feriado-morazanico-2018/copan-cover.jpg
+              https://honduras.travel/images/new/Martin-Strmiska-Utila-small-min.jpg
+              https://honduras.travel/images/new/Wolfgang-Polzer-Avistamiento-de-Aves-small-min.jpg */}
             {/*}
           <View style={styles.getStartedContainer}>
             {this._maybeRenderDevelopmentModeWarning()}
