@@ -9,42 +9,22 @@ import { List, ListItem } from 'react-native-elements'
 import sideMenu from '../components/sideMenu';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-//import DrawerScreen from '../app/stacks/drawerScreen';
-// import {
-//   StackNavigator
-// } from 'react-navigation';
-
-// import menu from '../app/index.js';
-// const Navigator = StackNavigator({
-//   DrewerStack: {screen: DrawerStack}
-// },{
-//     headerMode: 'none',
-//     initialRouteName: 'drawerStack'
-// })
-
-// export default Navigator;
-
-{/* <menu></menu> */}
-
-import sideD from '../screens/sideScreen.js'
 import {
+  ImageBackground,
   Image,
   Platform,
   ScrollView,
   StyleSheet,
+  Alert,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
-import { MonoText } from '../components/StyledText';
 
-function prueba(){
-  
-}
+console.log('antes de cargar islas')
 
-function retrieveData(){
 
 //<DrawerScreen></DrawerScreen>
 var config = {
@@ -60,29 +40,69 @@ if (!firebase.apps.length){
   firebase.initializeApp(config);
 }
 
+
  //firebase.initializeApp(config);
 database = firebase.database();
+
+//var prueba = "hola mundo";
 
 firebase.database().ref('atractivos').once('value', (data) => {
   var datos = data.val();
   var keys = Object.keys(datos);
   //console.log(keys);
   for (var i =0; i< keys.length; i++){
-    var k = keys[i];
-    var name = datos[k].name;
-    //var dato = datos[k].dato;
-    console.log(name);
-  }
+    var k = keys[10];
+    var lugares = datos[k].lugares;
+    global.apartado_mice = [datos[k].name];
+    var subkeys= Object.keys(lugares);
+    global.f_mice =[];
+    //global.myVar = apartado_mice;
+    for(var m=0; m< subkeys.length; m++){
+      f_mice.push(subkeys[m].toString()); 
+    }
+    //global.f = [subkeys[0],subkeys[1],subkeys[2],subkeys[3],subkeys[4]];
+    
+    global.desc_mice =[];
+    global.link_imagen_mice=[];
+    for(var k=0; k< subkeys.length; k++){
+      var fotos = lugares[f_mice[k]].fotos;
+      desc_mice.push(lugares[f_mice[k]].desc);
+      //global.desc_mice = lugares[f[k]].desc_mice;
+      var keylinks = Object.keys(fotos);
+      var links = keylinks[1];
+      link_imagen_mice.push(fotos[links])
+      //global.link_imagen_mice =fotos[links];
+    }
+
+
+    //for (var j =0; j< subkeys.length; j++){
+      
+      //var sk = subkeys[j];
+      
+      //} 
+      //var dato = datos[k].dato;
+      //console.log('-----',subkeys);
+    }
+
+    console.log('-----',link_imagen_mice);
+    console.log('-----',apartado_mice);
+    console.log('-----',f_mice);
+    console.log('-----',desc_mice);
+    //------------------->console.log('-----',subkeys[0]);
+
   // <sideD></sideD>
   //console.log(data.val());
 })
 
+//console.log('----->>>',prueba);
+
 //var ref = database.ref('atractivos');
 //ref.on('values', gotData, errData);
 
-}
+
 
 //------------------
+console.log('Cargo buceo')
 
 //------------------
 
@@ -115,27 +135,93 @@ function errData(data){
  
 }
 
+
+function prueba1(){
+  console.log('HOLA PERRO');
+  //alert('HOLA PERRO');
+ 
+}
+
 import MenuButton from '../app/components/MenuButton'
 
-export default class HomeScreen extends React.Component {
+
+export default class Buceo extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state ={showAlert: false};
+  }
 
   static navigationOptions = {
     header: null,
   };
 
+  // _threeOptionAlertHandler = () => {
+  //   //function to make three option alert
+  //   Alert.alert(
+  //     //title
+  //     'Hello',
+  //     //body
+  //     'I am three option alert. Do you want to cancel me ?',
+  //     [
+  //       { text: 'May be', onPress: () => console.log('May be Pressed') },
+  //       { text: 'Yes', onPress: () => console.log('Yes Pressed') },
+  //       { text: 'OK', onPress: () => console.log('OK Pressed') },
+  //     ],
+  //     { cancelable: true }
+  //   );
+  // };
+
+  showAlert=(indice) => {
+    this.setState({
+      showAlert: true,
+    });
+    //alert(desc_mice);
+    console.log('cabeza de naranja');
+    Alert.alert(
+      //title
+      //'Informacion',
+      f_mice[indice].toUpperCase(),
+      //body
+      'Descripcion: '+desc_mice[indice],
+      [
+        //{ text: '', onPress: () => console.log('May be Pressed') },
+        { text: 'Agregar a favoritos ★', onPress: () => console.log('Favoritos') },
+        { text: 'OK', onPress: () => console.log('OK') },
+      ],
+      { cancelable: true }
+    );
+
+  };
+
+  hideAlert = () => {
+    this.setState({
+      showAlert: false
+    });
+  };
+
   
   render() {
+    const {showAlert}= this.state;
+    global.indicador=0;
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <View style={styles.welcomeContainer}>
           
       <MenuButton/>
-      <Text>MICE</Text>
             <Image
               source={logo}
               style={styles.welcomeImage}
             />
+      <Text
+       style={{
+        fontSize: 30,
+        fontWeight: 'bold',
+       }}
+      >
+        MEETINGSS, INCENTIVES, CONFERENCING, EXHIBITIONS
+      </Text>
 
             </View>
 
@@ -157,11 +243,133 @@ export default class HomeScreen extends React.Component {
                 }}
               /> */}
 
-            
-{/* 
-              <View style={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>      
-                <Image source={imagen3}/>
-                <Image source={imagen3}/>
+        {/* <Image
+          style={{flexGrow: 1, width: 'auto', height: 350, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}
+          source={{uri: 'http://www.honduras.travel/images/carousel/islas/carousel-amapala-1.jpg'}}
+        />
+       
+         <Image
+          style={{flexGrow: 1, width: 'auto', height: 350, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}
+          source={{uri: 'http://www.honduras.travel/images/carousel/islas/carousel-amapala-2.jpg'}}
+        /> */}
+
+        <TouchableOpacity onPress={() => {this.showAlert(0)}}>
+
+<ImageBackground 
+  source={{ uri: link_imagen_mice[0] }}
+  style={{flexGrow: 1, width: 'auto', height: 350, justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}
+>
+  <Text 
+    style={{
+      fontSize: 30,
+      fontWeight: 'bold',
+      color: 'white',
+      position: 'absolute', // child
+      justifyContent: 'center', 
+      alignItems: 'center'
+      // bottom: 0, // position where you want
+      // left: 0
+    }}
+    >
+    La Ceiba, Atlántida
+  </Text>
+
+
+  
+</ImageBackground>
+
+    </TouchableOpacity>
+
+    {/* ----------------- */}
+
+
+        <TouchableOpacity onPress={() => {this.showAlert(1)}}>
+
+<ImageBackground 
+  source={{ uri: link_imagen_mice[1] }}
+  style={{flexGrow: 1, width: 'auto', height: 350, justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}
+>
+  <Text 
+    style={{
+      fontSize: 30,
+      fontWeight: 'bold',
+      color: 'white',
+      position: 'absolute', // child
+      justifyContent: 'center', 
+      alignItems: 'center'
+      // bottom: 0, // position where you want
+      // left: 0
+    }}
+    >
+    Puerto Cortés, Cortés
+  </Text>
+
+
+  
+</ImageBackground>
+
+    </TouchableOpacity>
+    {/* ----------------- */}
+
+        <TouchableOpacity onPress={() => {this.showAlert(2)}}>
+
+<ImageBackground 
+  source={{ uri: link_imagen_mice[2] }}
+  style={{flexGrow: 1, width: 'auto', height: 350, justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}
+>
+  <Text 
+    style={{
+      fontSize: 30,
+      fontWeight: 'bold',
+      color: 'white',
+      position: 'absolute', // child
+      justifyContent: 'center', 
+      alignItems: 'center'
+      // bottom: 0, // position where you want
+      // left: 0
+    }}
+    >
+      San Pedro Sula, Cortés
+  </Text>
+
+
+  
+</ImageBackground>
+
+    </TouchableOpacity>
+    {/* ----------------- */}
+
+        <TouchableOpacity onPress={() => {this.showAlert(3)}}>
+
+<ImageBackground 
+  source={{ uri: link_imagen_mice[3] }}
+  style={{flexGrow: 1, width: 'auto', height: 350, justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}
+>
+  <Text 
+    style={{
+      fontSize: 30,
+      fontWeight: 'bold',
+      color: 'white',
+      position: 'absolute', // child
+      justifyContent: 'center', 
+      alignItems: 'center'
+      // bottom: 0, // position where you want
+      // left: 0
+    }}
+    >
+    Tegucigalpa, Distrito Central
+  </Text>
+
+
+  
+</ImageBackground>
+
+    </TouchableOpacity>
+    {/* ----------------- */}
+
+                 {/* <View style={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>      
+                <Image source={{uri: 'http://www.honduras.travel/images/carousel/islas/carousel-amapala-1.jpg'}}/>
+                <Image source={{uri: 'http://www.honduras.travel/images/carousel/islas/carousel-amapala-2.jpg'}}/>
               </View> */}
 
               

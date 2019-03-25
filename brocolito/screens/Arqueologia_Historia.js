@@ -10,23 +10,21 @@ import sideMenu from '../components/sideMenu';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {
+  ImageBackground,
   Image,
   Platform,
   ScrollView,
   StyleSheet,
+  Alert,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
-import { MonoText } from '../components/StyledText';
 
-function prueba(){
-  
-}
+console.log('antes de cargar islas')
 
-function retrieveData(){
 
 //<DrawerScreen></DrawerScreen>
 var config = {
@@ -42,29 +40,69 @@ if (!firebase.apps.length){
   firebase.initializeApp(config);
 }
 
+
  //firebase.initializeApp(config);
 database = firebase.database();
+
+//var prueba = "hola mundo";
 
 firebase.database().ref('atractivos').once('value', (data) => {
   var datos = data.val();
   var keys = Object.keys(datos);
   //console.log(keys);
   for (var i =0; i< keys.length; i++){
-    var k = keys[i];
-    var name = datos[k].name;
-    //var dato = datos[k].dato;
-    console.log(name);
-  }
+    var k = keys[3];
+    var lugares = datos[k].lugares;
+    global.apartado_arqueologia = [datos[k].name];
+    var subkeys= Object.keys(lugares);
+    global.f_arqueologia =[];
+    //global.myVar = apartado_arqueologia;
+    for(var m=0; m< subkeys.length; m++){
+      f_arqueologia.push(subkeys[m].toString()); 
+    }
+    //global.f = [subkeys[0],subkeys[1],subkeys[2],subkeys[3],subkeys[4]];
+    
+    global.desc_arqueologia =[];
+    global.link_imagen_arqueologia=[];
+    for(var k=0; k< subkeys.length; k++){
+      var fotos = lugares[f_arqueologia[k]].fotos;
+      desc_arqueologia.push(lugares[f_arqueologia[k]].desc);
+      //global.desc_arqueologia = lugares[f[k]].desc_arqueologia;
+      var keylinks = Object.keys(fotos);
+      var links = keylinks[0];
+      link_imagen_arqueologia.push(fotos[links])
+      //global.link_imagen_arqueologia =fotos[links];
+    }
+
+
+    //for (var j =0; j< subkeys.length; j++){
+      
+      //var sk = subkeys[j];
+      
+      //} 
+      //var dato = datos[k].dato;
+      //console.log('-----',subkeys);
+    }
+
+    console.log('-----',link_imagen_arqueologia);
+    console.log('-----',apartado_arqueologia);
+    console.log('-----',f_arqueologia);
+    console.log('-----',desc_arqueologia);
+    //------------------->console.log('-----',subkeys[0]);
+
   // <sideD></sideD>
   //console.log(data.val());
 })
 
+//console.log('----->>>',prueba);
+
 //var ref = database.ref('atractivos');
 //ref.on('values', gotData, errData);
 
-}
+
 
 //------------------
+console.log('Cargo buceo')
 
 //------------------
 
@@ -97,27 +135,93 @@ function errData(data){
  
 }
 
+
+function prueba1(){
+  console.log('HOLA PERRO');
+  //alert('HOLA PERRO');
+ 
+}
+
 import MenuButton from '../app/components/MenuButton'
 
-export default class HomeScreen extends React.Component {
+
+export default class Buceo extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state ={showAlert: false};
+  }
 
   static navigationOptions = {
     header: null,
   };
 
+  // _threeOptionAlertHandler = () => {
+  //   //function to make three option alert
+  //   Alert.alert(
+  //     //title
+  //     'Hello',
+  //     //body
+  //     'I am three option alert. Do you want to cancel me ?',
+  //     [
+  //       { text: 'May be', onPress: () => console.log('May be Pressed') },
+  //       { text: 'Yes', onPress: () => console.log('Yes Pressed') },
+  //       { text: 'OK', onPress: () => console.log('OK Pressed') },
+  //     ],
+  //     { cancelable: true }
+  //   );
+  // };
+
+  showAlert=(indice) => {
+    this.setState({
+      showAlert: true,
+    });
+    //alert(desc_arqueologia);
+    console.log('cabeza de naranja');
+    Alert.alert(
+      //title
+      //'Informacion',
+      f_arqueologia[indice].toUpperCase(),
+      //body
+      'Descripcion: '+desc_arqueologia[indice],
+      [
+        //{ text: '', onPress: () => console.log('May be Pressed') },
+        { text: 'Agregar a favoritos ★', onPress: () => console.log('Favoritos') },
+        { text: 'OK', onPress: () => console.log('OK') },
+      ],
+      { cancelable: true }
+    );
+
+  };
+
+  hideAlert = () => {
+    this.setState({
+      showAlert: false
+    });
+  };
+
   
   render() {
+    const {showAlert}= this.state;
+    global.indicador=0;
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <View style={styles.welcomeContainer}>
           
       <MenuButton/>
-      <Text>ARQUEOLOGIA E HISTORIA</Text>
             <Image
               source={logo}
               style={styles.welcomeImage}
             />
+      <Text
+       style={{
+        fontSize: 30,
+        fontWeight: 'bold',
+       }}
+      >
+        {apartado_arqueologia.toString().toUpperCase()}
+      </Text>
 
             </View>
 
@@ -139,11 +243,246 @@ export default class HomeScreen extends React.Component {
                 }}
               /> */}
 
-            
-{/* 
-              <View style={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>      
-                <Image source={imagen3}/>
-                <Image source={imagen3}/>
+        {/* <Image
+          style={{flexGrow: 1, width: 'auto', height: 350, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}
+          source={{uri: 'http://www.honduras.travel/images/carousel/islas/carousel-amapala-1.jpg'}}
+        />
+       
+         <Image
+          style={{flexGrow: 1, width: 'auto', height: 350, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}
+          source={{uri: 'http://www.honduras.travel/images/carousel/islas/carousel-amapala-2.jpg'}}
+        /> */}
+
+        <TouchableOpacity onPress={() => {this.showAlert(0)}}>
+
+<ImageBackground 
+  source={{ uri: link_imagen_arqueologia[0] }}
+  style={{flexGrow: 1, width: 'auto', height: 350, justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}
+>
+  <Text 
+    style={{
+      fontSize: 30,
+      fontWeight: 'bold',
+      color: 'white',
+      position: 'absolute', // child
+      justifyContent: 'center', 
+      alignItems: 'center'
+      // bottom: 0, // position where you want
+      // left: 0
+    }}
+    >
+    Cuidad Blanca, Gracias a Dios
+  </Text>
+
+
+  
+</ImageBackground>
+
+    </TouchableOpacity>
+
+    {/* ----------------- */}
+
+
+        <TouchableOpacity onPress={() => {this.showAlert(1)}}>
+
+<ImageBackground 
+  source={{ uri: link_imagen_arqueologia[1] }}
+  style={{flexGrow: 1, width: 'auto', height: 350, justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}
+>
+  <Text 
+    style={{
+      fontSize: 30,
+      fontWeight: 'bold',
+      color: 'white',
+      position: 'absolute', // child
+      justifyContent: 'center', 
+      alignItems: 'center'
+      // bottom: 0, // position where you want
+      // left: 0
+    }}
+    >
+    Parque Arqueológico Ruinas de Copán, Copán
+  </Text>
+
+
+  
+</ImageBackground>
+
+    </TouchableOpacity>
+    {/* ----------------- */}
+
+        <TouchableOpacity onPress={() => {this.showAlert(2)}}>
+
+<ImageBackground 
+  source={{ uri: link_imagen_arqueologia[2] }}
+  style={{flexGrow: 1, width: 'auto', height: 350, justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}
+>
+  <Text 
+    style={{
+      fontSize: 30,
+      fontWeight: 'bold',
+      color: 'white',
+      position: 'absolute', // child
+      justifyContent: 'center', 
+      alignItems: 'center'
+      // bottom: 0, // position where you want
+      // left: 0
+    }}
+    >
+    La Fortaleza de San Fernando, Omoa, Cortés
+  </Text>
+
+
+  
+</ImageBackground>
+
+    </TouchableOpacity>
+    {/* ----------------- */}
+
+        <TouchableOpacity onPress={() => {this.showAlert(3)}}>
+
+<ImageBackground 
+  source={{ uri: link_imagen_arqueologia[3] }}
+  style={{flexGrow: 1, width: 'auto', height: 350, justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}
+>
+  <Text 
+    style={{
+      fontSize: 30,
+      fontWeight: 'bold',
+      color: 'white',
+      position: 'absolute', // child
+      justifyContent: 'center', 
+      alignItems: 'center'
+      // bottom: 0, // position where you want
+      // left: 0
+    }}
+    >
+    La Fortaleza de Santa Bárbara, Trujillo, Colón
+  </Text>
+
+
+  
+</ImageBackground>
+
+    </TouchableOpacity>
+    {/* ----------------- */}
+
+        <TouchableOpacity onPress={() => {this.showAlert(4)}}>
+
+<ImageBackground 
+  source={{ uri: link_imagen_arqueologia[4] }}
+  style={{flexGrow: 1, width: 'auto', height: 350, justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}
+>
+  <Text 
+    style={{
+      fontSize: 30,
+      fontWeight: 'bold',
+      color: 'white',
+      position: 'absolute', // child
+      justifyContent: 'center', 
+      alignItems: 'center'
+      // bottom: 0, // position where you want
+      // left: 0
+    }}
+    >
+    El Fuerte de San Cristóbal, Gracias, Lempira
+  </Text>
+
+
+  
+</ImageBackground>
+
+    </TouchableOpacity>
+    {/* ----------------- */}
+
+        <TouchableOpacity onPress={() => {this.showAlert(5)}}>
+
+<ImageBackground 
+  source={{ uri: link_imagen_arqueologia[5] }}
+  style={{flexGrow: 1, width: 'auto', height: 350, justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}
+>
+  <Text 
+    style={{
+      fontSize: 30,
+      fontWeight: 'bold',
+      color: 'white',
+      position: 'absolute', // child
+      justifyContent: 'center', 
+      alignItems: 'center'
+      // bottom: 0, // position where you want
+      // left: 0
+    }}
+    >
+    Parque Eco-Arqueológico de los Naranjos, Lago de Yojoa
+  </Text>
+
+
+  
+</ImageBackground>
+
+    </TouchableOpacity>
+    {/* ----------------- */}
+
+        <TouchableOpacity onPress={() => {this.showAlert(6)}}>
+
+<ImageBackground 
+  source={{ uri: link_imagen_arqueologia[6] }}
+  style={{flexGrow: 1, width: 'auto', height: 350, justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}
+>
+  <Text 
+    style={{
+      fontSize: 30,
+      fontWeight: 'bold',
+      color: 'white',
+      position: 'absolute', // child
+      justifyContent: 'center', 
+      alignItems: 'center'
+      // bottom: 0, // position where you want
+      // left: 0
+    }}
+    >
+    Parque de Aves y Reserva Natural Montaña Guacamaya "Macaw Mountain", Copán
+  </Text>
+
+
+  
+</ImageBackground>
+
+    </TouchableOpacity>
+    {/* ----------------- */}
+
+        <TouchableOpacity onPress={() => {this.showAlert(7)}}>
+
+<ImageBackground 
+  source={{ uri: link_imagen_arqueologia[7] }}
+  style={{flexGrow: 1, width: 'auto', height: 350, justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}
+>
+  <Text 
+    style={{
+      fontSize: 30,
+      fontWeight: 'bold',
+      color: 'white',
+      position: 'absolute', // child
+      justifyContent: 'center', 
+      alignItems: 'center'
+      // bottom: 0, // position where you want
+      // left: 0
+    }}
+    >
+    Rastrajón, Copán
+  </Text>
+
+
+  
+</ImageBackground>
+
+    </TouchableOpacity>
+    {/* ----------------- */}
+
+ 
+              {/* <View style={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>      
+                <Image source={{uri: 'http://www.honduras.travel/images/carousel/islas/carousel-amapala-1.jpg'}}/>
+                <Image source={{uri: 'http://www.honduras.travel/images/carousel/islas/carousel-amapala-2.jpg'}}/>
               </View> */}
 
               

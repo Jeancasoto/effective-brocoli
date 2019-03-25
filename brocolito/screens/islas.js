@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ThemeProvider ,Row, Header} from 'react-native-elements';
+import { Button,SocialIcon, ThemeProvider ,Row, Header} from 'react-native-elements';
 import logo from './Imagenes/marcapais.png';
 import imagen from './Imagenes/imagen.jpeg';
 import imagen2 from './Imagenes/imagen2.jpeg';
@@ -8,6 +8,8 @@ import * as firebase from 'firebase';
 import { List, ListItem } from 'react-native-elements'
 import sideMenu from '../components/sideMenu';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
+import { MonoText } from '../components/StyledText';
 
 import {
   ImageBackground,
@@ -218,9 +220,9 @@ export default class HomeScreen extends React.Component {
        style={{
         fontSize: 30,
         fontWeight: 'bold',
-        color: 'blue',}}
+        }}
       >
-        {apartado}
+        {apartado.toString().toUpperCase()}
       </Text>
 
             </View>
@@ -455,12 +457,36 @@ export default class HomeScreen extends React.Component {
         </ScrollView>
     
         {/* <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
+        <SocialIcon
+          type='twitter'
+        />
+        <SocialIcon
+          raised={false}
+          type='instagram'
+        />
+
+        <SocialIcon
+          
+          type='facebook'
+        />
+
+        <SocialIcon
+          
+          type='youtube'
+        />
+
+        <SocialIcon
+          
+          type='github'
+        /> */}
+
+          {/* <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
 
           <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
             <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
-          </View>
-        </View> */}
+          </View> 
+        </View>
+      */}
       </View>
     );
   }
@@ -549,6 +575,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   tabBarInfoContainer: {
+    flex:1,
+    flexDirection : 'row',
     position: 'absolute',
     bottom: 0,
     left: 0,
@@ -565,8 +593,9 @@ const styles = StyleSheet.create({
       },
     }),
     alignItems: 'center',
+    
     backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
+    paddingVertical: 5,
   },
   tabBarInfoText: {
     fontSize: 17,

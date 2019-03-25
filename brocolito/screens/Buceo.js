@@ -218,9 +218,9 @@ export default class Buceo extends React.Component {
        style={{
         fontSize: 30,
         fontWeight: 'bold',
-        color: 'blue',}}
+       }}
       >
-        {apartado_b}
+        {apartado_b.toString().toUpperCase()}
       </Text>
 
             </View>
